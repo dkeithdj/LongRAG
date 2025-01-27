@@ -66,8 +66,8 @@
       # This example is only using x86_64-linux
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
-      # Use Python 3.12 from nixpkgs
-      python = pkgs.python312;
+      # Use Python 3.13 from nixpkgs
+      python = pkgs.python313;
 
       # Construct package set
       pythonSet =
@@ -122,6 +122,7 @@
               LD_LIBRARY_PATH = lib.makeLibraryPath pkgs.pythonManylinuxPackages.manylinux1;
             };
           shellHook = ''
+            # $SHELL
             unset PYTHONPATH
           '';
         };
@@ -202,6 +203,7 @@
             };
 
             shellHook = ''
+              # $SHELL
               # Undo dependency propagation by nixpkgs.
               unset PYTHONPATH
 

@@ -1,16 +1,26 @@
+import os
+
+# from dotenv import load_dotenv
+import sys
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import argparse
 import json
-from tqdm import tqdm
-from utils.gpt_inference import GPTInference
-from utils.gemini_inference import GeminiInference
-from utils.claude_inference import ClaudeInference
-from utils.eval_util import single_ans_em, has_correct_answer
-from datasets import load_dataset
 import time
-import tiktoken
 
+import tiktoken
+from datasets import load_dataset
+from tqdm import tqdm
+
+from utils.claude_inference import ClaudeInference
+from utils.eval_util import has_correct_answer, single_ans_em
+from utils.gemini_inference import GeminiInference
+from utils.gpt_inference import GPTInference
+
+# load_dotenv()
 
 if __name__ == "__main__":
+    print(os.getenv("ANTHROPIC_API_KEY"))
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--test_data_name", type=str, default=None, help="Test data name"

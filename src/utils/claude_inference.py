@@ -1,14 +1,19 @@
-import anthropic
-from utils.load_data_util import load_json_file
-from datasets import load_dataset
-import re
 import os
+import re
+
+import anthropic
+from datasets import load_dataset
+# from dotenv import load_dotenv
+
+from utils.load_data_util import load_json_file
+
+# load_dotenv()
 
 
 class ClaudeInference:
     def __init__(self):
         self.client = anthropic.Anthropic(
-            api_key=os.environ.get("ANTHROPIC_API_KEY"),
+            api_key=os.getenv("ANTHROPIC_API_KEY"),
         )
 
     def predict(self, system_prompt, prompt):
